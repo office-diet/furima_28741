@@ -48,7 +48,6 @@ Things you may want to cover:
 | name              | string      | null: false                    |
 | text              | text        | null: false                    |
 | price             | integer     | null: false                    |
-| sold              | boolean     | default: false                 |
 | user_id           | references  | null: false, foreign_key: true |
 | category_id       | references  | null: false, foreign_key: true |
 | condition_id      | references  | null: false, foreign_key: true |
@@ -68,6 +67,18 @@ Things you may want to cover:
 
 ## purchases　テーブル
 
+| column  | type        | Options                         |
+|---------|-------------|---------------------------------|
+| user_id | references  | null: false, foreign_key: true  |
+| item_id | references  | null: false, foreign_key: true  |
+
+### Association
+- belongs_to              :item
+- belongs_to              :user
+- has_one                 :delivery
+
+## deliveries　テーブル
+
 | column          | type        | Options                         |
 |-----------------|-------------|---------------------------------|
 | postal_code     | string      | null: false                     |
@@ -76,13 +87,13 @@ Things you may want to cover:
 | address         | string      | null: false                     |
 | building        | string      |                                 |
 | tel             | integer     | null: false                     |
-| item_id         | references  | null: false, foreign_key: true  |
-| user_id         | references  | null: false, foreign_key: true  |
+| purchase_id     | references  | null: false, foreign_key: true  |
 
 ### Association
-- belongs_to              :item
-- belongs_to              :user
+- belongs_to              :purchase
 - belongs_to_active_hash  :prefecture
+
+
 
 ## ActiveHash
 | Name            | 内容                |
