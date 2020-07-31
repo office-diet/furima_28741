@@ -57,6 +57,7 @@ Things you may want to cover:
 
 ### Association
 - has_one                 :purchase
+- has_one                 :delivery
 - belongs_to              :user
 - has_one_attached        :image
 - belongs_to_active_hash  :category
@@ -75,7 +76,6 @@ Things you may want to cover:
 ### Association
 - belongs_to              :item
 - belongs_to              :user
-- has_one                 :delivery
 
 ## deliveries　テーブル
 
@@ -86,13 +86,12 @@ Things you may want to cover:
 | town            | string      | null: false                     |
 | address         | string      | null: false                     |
 | building        | string      |                                 |
-| tel             | integer     | null: false                     |
-| purchase_id     | references  | null: false, foreign_key: true  |
+| tel             | string      | null: false                     |
+| item_id         | references  | null: false, foreign_key: true  |
 
 ### Association
-- belongs_to              :purchase
+- belongs_to              :item
 - belongs_to_active_hash  :prefecture
-
 
 
 ## ActiveHash
