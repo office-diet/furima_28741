@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   JAPANESE_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
-  KATAKANA_REGEX  = /\A[ァ-ヶー－]/.freeze
-  
+  KATAKANA_REGEX = /\A[ァ-ヶー－]/.freeze
+
   with_options presence: true do
     validates :nickname, uniqueness: { case_sensitive: true, message: 'has already been taken' }
     validates :email, uniqueness: { case_sensitive: true, message: 'has already been taken' }
