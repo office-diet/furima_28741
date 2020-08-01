@@ -97,7 +97,7 @@ Things you may want to cover:
 ## ActiveHash
 | Name            | 内容                |
 |-----------------|---------------------|
-| categorys       | 商品カテゴリ        |
+| category        | 商品カテゴリ        |
 | conditions      | 商品コンディション  |
 | postages        | 送料                |
 | prefectures     | 都道府県            |
