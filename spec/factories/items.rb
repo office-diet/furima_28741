@@ -1,8 +1,6 @@
 FactoryBot.define do
   factory :item do
     Faker::Config.locale = :ja
-    # image { fixture_file_upload('app/assets/images/test_image.png') }
-    image { 'app/assets/images/test_image.png' }
     name  { Faker::Name.name}
     text  { Faker::Lorem.sentence}
     price { rand(300..9999999) }
