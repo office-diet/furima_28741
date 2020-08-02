@@ -49,11 +49,11 @@ Things you may want to cover:
 | text              | text        | null: false                    |
 | price             | integer     | null: false                    |
 | user_id           | bigint      | null: false, foreign_key: true |
-| category_id       | references  | null: false, foreign_key: true |
-| condition_id      | references  | null: false, foreign_key: true |
-| postage_id        | references  | null: false, foreign_key: true |
-| prefecture_id     | references  | null: false, foreign_key: true |
-| shipment_deley_id | references  | null: false, foreign_key: true |
+| category_id       | integer     | null: false, foreign_key: true |
+| condition_id      | integer     | null: false, foreign_key: true |
+| postage_id        | integer     | null: false, foreign_key: true |
+| prefecture_id     | integer     | null: false, foreign_key: true |
+| shipment_deley_id | integer     | null: false, foreign_key: true |
 
 ### Association
 - has_one                 :purchase
