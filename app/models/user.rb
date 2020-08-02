@@ -29,7 +29,7 @@ class User < ApplicationRecord
     if date != '' && date.count('-') > 2
       errors.add(:birthday, 'invalid')
     else
-      return true
+      true
     end
   end
 end
