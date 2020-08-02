@@ -48,12 +48,12 @@ Things you may want to cover:
 | name              | string      | null: false                    |
 | text              | text        | null: false                    |
 | price             | integer     | null: false                    |
-| user_id           | references  | null: false, foreign_key: true |
-| category_id       | references  | null: false, foreign_key: true |
-| condition_id      | references  | null: false, foreign_key: true |
-| postage_id        | references  | null: false, foreign_key: true |
-| prefecture_id     | references  | null: false, foreign_key: true |
-| shipment_deley_id | references  | null: false, foreign_key: true |
+| user_id           | bigint      | null: false, foreign_key: true |
+| category_id       | integer     | null: false, foreign_key: true |
+| condition_id      | integer     | null: false, foreign_key: true |
+| postage_id        | integer     | null: false, foreign_key: true |
+| prefecture_id     | integer     | null: false, foreign_key: true |
+| shipment_deley_id | integer     | null: false, foreign_key: true |
 
 ### Association
 - has_one                 :purchase
@@ -97,7 +97,7 @@ Things you may want to cover:
 ## ActiveHash
 | Name            | 内容                |
 |-----------------|---------------------|
-| categorys       | 商品カテゴリ        |
+| category        | 商品カテゴリ        |
 | conditions      | 商品コンディション  |
 | postages        | 送料                |
 | prefectures     | 都道府県            |
