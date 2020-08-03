@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   def index
-    @item = Item.all.order(id: 'DESC').includes(:purchase)
+    @items = Item.all.order(id: 'DESC').includes(:purchase)
   end
 
   def show
+      @item = Item.find(params[:id])
   end
 
   def new
