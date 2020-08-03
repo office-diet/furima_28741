@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: :show
   def index
-    @item = Item.all.order(id: 'DESC').includes(:purchase)
+    @items = Item.all.order(id: 'DESC').includes(:purchase)
   end
 
   def show
@@ -14,7 +15,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to item_path(@item.id)
     else
       render 'items/new'
     end
@@ -24,5 +25,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :text, :price, :category_id, :condition_id, :postage_id, :prefecture_id, :shipment_delay_id).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end

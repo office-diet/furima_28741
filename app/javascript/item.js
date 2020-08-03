@@ -1,4 +1,4 @@
-$(function (){
+$(document).on('turbolinks:load', function (){
   const $inputPrice = $('#item_price');
   const $textFee = $('#add-tax-price');
   const $textProfit = $('#profit');
