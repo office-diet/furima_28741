@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @item = Item.all.order(id: "DESC")
+    @item = Item.all.order(id: "DESC").includes(:purchase)
   end
 
   def show
