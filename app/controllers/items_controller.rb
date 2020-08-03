@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: :show
+  before_action :set_item, only: [:show, :edit, :update]
   def index
     @items = Item.all.order(id: 'DESC').includes(:purchase)
   end
@@ -18,6 +18,18 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       render 'items/new'
+    end
+  end
+
+  def edit
+    redirect_to root_path if @item.user.id != current_user.id
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render 'items/edit'
     end
   end
 
