@@ -71,7 +71,7 @@ app/assets/stylesheets/items/new.css %>
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:postage_is, Postage.all, :id, :name, {selected: @item.postage_id}, {class:"select-box"}) %>
+        <%= f.collection_select(:postage_id, Postage.all, :id, :name, {selected: @item.postage_id}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
