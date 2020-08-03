@@ -22,6 +22,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user.id != current_user.id
+      redirect_to root_path
+    end
   end
 
   private
