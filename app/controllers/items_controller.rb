@@ -33,6 +33,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destoy
+  end
+
   private
 
   def item_params
