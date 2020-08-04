@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :check_signed_in, only: [:create, :edit, :update, :destroy]
   def index
     @items = Item.all.order(id: 'DESC').includes(:purchase)
   end
@@ -17,7 +18,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item.id)
     else
-      render 'items/new'
+      render :new
     end
   end
 
@@ -29,7 +30,17 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
-      render 'items/edit'
+      render :edit
+    end
+  end
+
+  def destroy
+    if @item.user.id = current_user.id
+      if @item.destroy
+        redirect_to root_path
+      else
+        render :show
+      end
     end
   end
 
@@ -37,6 +48,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :text, :price, :category_id, :condition_id, :postage_id, :prefecture_id, :shipment_delay_id).merge(user_id: current_user.id)
+  end
+
+  def check_signed_in
+    redirect_to root_path unless user_signed_in?
   end
 
   def set_item
