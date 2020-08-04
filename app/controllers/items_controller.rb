@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destoy
+  def destroy
   end
 
   private
