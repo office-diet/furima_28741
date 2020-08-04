@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one :purchase
+  has_one :delivery
   belongs_to :user
   has_one_attached :image, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
