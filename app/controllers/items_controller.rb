@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item.id)
     else
-      render 'items/new'
+      render action: :new
     end
   end
 
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
-      render 'items/edit'
+      render action: :edit
     end
   end
 
@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
       if @item.destroy
         redirect_to root_path
       else
-        render 'item/show'
+        render action: :show
       end
     end
   end
