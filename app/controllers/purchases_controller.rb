@@ -2,6 +2,11 @@ class PurchasesController < ApplicationController
   before_action :set_item
 
   def index
+    redirect_to new_user_session_path unless user_signed_in?
+    if @item.user_id == current_user.id || @item.purchase.present?
+      redirect_to root_path
+    end
+
     @purchase = ItemPurchase.new
   end
   
