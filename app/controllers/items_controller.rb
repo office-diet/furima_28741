@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_signed_in, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @items = Item.all.order(id: 'DESC').includes(:purchase)
   end
@@ -9,7 +11,6 @@ class ItemsController < ApplicationController
   end
 
   def new
-    redirect_to new_user_session_path unless user_signed_in?
     @item = Item.new
   end
 
