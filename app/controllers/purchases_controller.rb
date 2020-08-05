@@ -1,12 +1,10 @@
 class PurchasesController < ApplicationController
   before_action :set_item
+  before_action :authenticate_user!
 
   def index
-    redirect_to new_user_session_path and return unless user_signed_in?
-    redirect_to root_path and return if @item.purchase.present?
-
-    redirect_to root_path if @item.user_id == current_user.id
-
+    item_present?
+    own_item?
     @purchase = ItemPurchase.new
   end
 
@@ -25,6 +23,14 @@ class PurchasesController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def item_present?
+    redirect_to root_path if @item.purchase.present?
+  end
+
+  def own_item?
+    redirect_to root_path if @item.user_id == current_user.id
   end
 
   def purchase_params
