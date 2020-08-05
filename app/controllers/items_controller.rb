@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :check_signed_in, only: [:create, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.all.order(id: 'DESC').includes(:purchase)
@@ -49,10 +48,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :text, :price, :category_id, :condition_id, :postage_id, :prefecture_id, :shipment_delay_id).merge(user_id: current_user.id)
-  end
-
-  def check_signed_in
-    redirect_to root_path unless user_signed_in?
   end
 
   def set_item
