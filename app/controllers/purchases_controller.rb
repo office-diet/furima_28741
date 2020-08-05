@@ -4,9 +4,8 @@ class PurchasesController < ApplicationController
   def index
     redirect_to new_user_session_path and return unless user_signed_in?
     redirect_to root_path and return if @item.purchase.present?
-    if @item.user_id == current_user.id
-      redirect_to root_path
-    end
+
+    redirect_to root_path if @item.user_id == current_user.id
 
     @purchase = ItemPurchase.new
   end
