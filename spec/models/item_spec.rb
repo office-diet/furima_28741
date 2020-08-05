@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
     end
-    context '商品登録がうまくいくとき' do
+    context '商品登録がうまくいかないとき' do
       category_count = Category.count
       condition_count = Condition.count
       postage_count = Postage.count
