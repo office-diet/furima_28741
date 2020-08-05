@@ -3,13 +3,11 @@ class PurchasesController < ApplicationController
 
   def index
     redirect_to new_user_session_path unless user_signed_in?
-    if @item.user_id == current_user.id || @item.purchase.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user_id == current_user.id || @item.purchase.present?
 
     @purchase = ItemPurchase.new
   end
-  
+
   def create
     @purchase = ItemPurchase.new(purchase_params)
     if @purchase.valid?
@@ -28,16 +26,15 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.permit(:postal_code, :prefecture_id, :town, :address, :building, :tel, :item_id, :token ).merge(user_id: current_user.id).merge(price: @item.price)
+    params.permit(:postal_code, :prefecture_id, :town, :address, :building, :tel, :item_id, :token).merge(user_id: current_user.id).merge(price: @item.price)
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECURITY_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECURITY_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
-  
 end

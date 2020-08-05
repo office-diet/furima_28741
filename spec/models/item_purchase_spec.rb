@@ -41,7 +41,7 @@ RSpec.describe ItemPurchase, type: :model do
       it '郵便番号が不正（ハイフンがない）の場合登録できない' do
         @purchase.postal_code = '1234567'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Postal code input format 000-0000")
+        expect(@purchase.errors.full_messages).to include('Postal code input format 000-0000')
       end
       it '都道府県が空欄の場合登録できない' do
         @purchase.prefecture_id = ''
@@ -51,12 +51,12 @@ RSpec.describe ItemPurchase, type: :model do
       it '都道府県が未選択の場合登録できない' do
         @purchase.prefecture_id = 0
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Prefecture You need to select")
+        expect(@purchase.errors.full_messages).to include('Prefecture You need to select')
       end
       it "都道府県がの選択が不正（#{prefecture_count}以上）の場合登録できない" do
         @purchase.prefecture_id = prefecture_count
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Prefecture invalid")
+        expect(@purchase.errors.full_messages).to include('Prefecture invalid')
       end
       it '市区町村が空欄の場合登録できない' do
         @purchase.town = ''
@@ -76,20 +76,18 @@ RSpec.describe ItemPurchase, type: :model do
       it '電話番号が不正（12桁以上）の場合登録できない' do
         @purchase.tel = '012345678901'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Tel numeric only max length 11")
+        expect(@purchase.errors.full_messages).to include('Tel numeric only max length 11')
       end
       it '電話番号が不正（ハイフンあり）の場合登録できない' do
         @purchase.tel = '123-1234-1234'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Tel numeric only max length 11")
+        expect(@purchase.errors.full_messages).to include('Tel numeric only max length 11')
       end
       it '電話番号が不正（全角数字）の場合登録できない' do
         @purchase.tel = '１２３４５６７８９０'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Tel numeric only max length 11")
+        expect(@purchase.errors.full_messages).to include('Tel numeric only max length 11')
       end
-
-
     end
   end
 end
