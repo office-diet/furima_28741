@@ -16,7 +16,7 @@ const pay = () => {
     };
 
     Payjp.createToken(card, (status, response) => {
-      if (confirm("購入を確定してよろしいですか？") === true ) {
+      setTimeout(function(){
         if (status === 200) {
           const token = response.id;
           const renderDom = document.getElementById("charge-form");
@@ -26,11 +26,11 @@ const pay = () => {
           document.getElementById("number").removeAttribute("name");
           document.getElementById("cvc").removeAttribute("name");
           document.getElementById("exp_month").removeAttribute("name");
-          document.getElementById("exp_year").removeAttribute("name");
-        } 
-      }
-      document.getElementById("charge-form").submit();
-      document.getElementById("charge-form").reset();
+          document.getElementById("exp_year").removeAttribute("name");  
+        }
+        document.getElementById("charge-form").submit();
+        document.getElementById("charge-form").reset();
+      }, 1000);
     });
   });
 };
